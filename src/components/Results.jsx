@@ -5,7 +5,8 @@ export const Results = () => {
   const [totalPerPerson, setTotalPerPerson] = useState(0)
 
   return (
-    <div className="w-80 h-[400px] m-4 pt-8 p-6 rounded-lg bg-Verydarkcyan flex flex-col gap-4 ">
+    <div className="w-80 h-52 pt-8 p-6 rounded-lg bg-Verydarkcyan flex flex-col gap-4
+    lg:h-full ">
       <section className="flex justify-between items-center border  border-yellow-300">
         <div className="flex flex-col">
           <p className="text-Verylightgrayishcyan">Tip Amount</p>

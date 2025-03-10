@@ -11,8 +11,8 @@ export const BillTotal = () => {
   }
 
   return (
-    <div className="w-96 m-4 flex justify-center">
-      <form onSubmit={handleSubmit} className="flex flex-col w-80">
+    <div className="w-80 h-96 flex justify-center mb-4">
+      <form onSubmit={handleSubmit} className="flex flex-col w-auto">
         <label htmlFor="total" className="mt-2 mb-2 text-Darkgrayishcyan">Bill</label>
         <div className="relative">
           <img
