@@ -46,7 +46,7 @@ export const BillTotal = () => {
           <button 
             className="w-40 h-10 bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg">Custom</button>
         </section>
-        <label htmlFor="numberOfPeople" className="mt-8 mb-3 text-Darkgrayishcyan">Number of People</label>
+        <label htmlFor="numberOfPeople" className="mt-8 mb-3 text-Darkgrayishcyan lg:mt-4">Number of People</label>
         <div className="relative">
           <img
             src={iconPerson}

@@ -6,9 +6,9 @@ export const Results = () => {
 
   return (
     <div className="w-80 h-52 pt-8 p-6 rounded-lg bg-Verydarkcyan flex flex-col gap-4
-    lg:h-full ">
+    lg:h-[352px] lg:mt-4 ">
       <section className="flex justify-between items-center border  border-yellow-300">
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:mt-4 lg:mb-4">
           <p className="text-Verylightgrayishcyan">Tip Amount</p>
           <p className="text-Darkgrayishcyan">/ person</p>
         </div>
@@ -22,7 +22,7 @@ export const Results = () => {
         <p className="text-xl text-Strongcyan">total</p>
       </section>
       <button className="w-[272px] h-10 text-xl bg-Strongcyan text-Verydarkcyan cursor-pointer rounded-md
-        hover:bg-Lightgrayishcyan">RESET</button>
+        hover:bg-Lightgrayishcyan lg:mt-28">RESET</button>
     </div>
   )
 }
