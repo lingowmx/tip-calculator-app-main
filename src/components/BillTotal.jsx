@@ -5,7 +5,7 @@ import { ButtonTips } from "./ButtonTips"
 import { MainContext } from "../Context/MainContext"
 
 export const BillTotal = () => {  
-const {total, setTotal, persons, setPersons, tipPorcentage} = useContext(MainContext)
+const {total, setTotal, persons, setPersons} = useContext(MainContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -13,23 +13,13 @@ const {total, setTotal, persons, setPersons, tipPorcentage} = useContext(MainCon
     totalWithTip()
   }
   
-
-
-  const totalWithTip = () => {
-    const bill = parseFloat(total)
-    if(isNaN(bill) || bill <= 0) return "Insert a valid number"
-    const tip = bill * tipPorcentage / 100
-    const finalTotal = bill + tip
-    return finalTotal
-  }
   
-  const totalPerPerson = () => {
-    const total = totalWithTip()
-    const perPerson = total / persons
-    console.log(` el total es: ${perPerson}`)
-    return perPerson
-  }
-  totalPerPerson()
+  
+
+  // totalPerPerson()
+  //Estoy en enviar la funcion o las funciones al contexto parap oder compartirlas con lor
+  // demas componentes y asiu poder darle funcionalidad a todo,
+  //hay que verificar si es el  mejor paso o hay maneras de usar usecallback
 
 
   return (
@@ -62,7 +52,7 @@ const {total, setTotal, persons, setPersons, tipPorcentage} = useContext(MainCon
             type="text"
             id="numberOfPeople"
             value={persons}
-            onChange={(e) => setPersons(parseFloat(e.target.value))}
+            onChange={(e) => setPersons(e.target.value ? parseInt(e.target.value, 10) : "")}
             className="w-80 h-10 rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold" />
         </div>
       </form>

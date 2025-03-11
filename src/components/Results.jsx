@@ -2,7 +2,11 @@ import { useContext } from "react"
 import { MainContext } from "../Context/MainContext"
 
 export const Results = () => {
-const {tipAmount, setTipAmount} = useContext(MainContext)
+const {
+  tipAmount,
+  setTipAmount,
+  totalPerPerson,
+  setTotalPerPerson} = useContext(MainContext)
 
 
   return (
@@ -13,17 +17,19 @@ const {tipAmount, setTipAmount} = useContext(MainContext)
           <p className="text-Verylightgrayishcyan">Tip Amount</p>
           <p className="text-Darkgrayishcyan">/ person</p>
         </div>
-        <p className="text-xl text-Strongcyan">{setTipAmount()}</p>
+        <p className="text-xl text-Strongcyan">$ {tipAmount ? tipAmount.toFixed(2) : "0.00"}</p>
       </section>
       <section className="flex justify-between">
         <div className="flex flex-col">
           <p className="text-Verylightgrayishcyan">Total</p>
           <p className="text-Darkgrayishcyan">/ person</p>
         </div>
-        <p className="text-xl text-Strongcyan">total</p>
+        <p className="text-xl text-Strongcyan">$ {totalPerPerson ? totalPerPerson.toFixed(2): "0.00"}</p>
       </section>
-      <button className="w-[272px] h-10 text-xl bg-Strongcyan text-Verydarkcyan cursor-pointer rounded-md
-        hover:bg-Lightgrayishcyan lg:mt-28">RESET</button>
+      <button 
+        className="w-[272px] h-10 text-xl bg-Strongcyan text-Verydarkcyan cursor-pointer rounded-md
+        hover:bg-Lightgrayishcyan lg:mt-28"
+        onClick={() => (setTipAmount(0), setTotalPerPerson(0))}>RESET</button>
     </div>
   )
 }
