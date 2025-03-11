@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { MainContext } from "../Context/MainContext"
 
 export const Results = () => {
-  const [tipAmount, setTipAmount] = useState(0)
-  const [totalPerPerson, setTotalPerPerson] = useState(0)
+const {tipAmount, setTipAmount} = useContext(MainContext)
+
 
   return (
     <div className="w-80 h-52 pt-8 p-6 rounded-lg bg-Verydarkcyan flex flex-col gap-4
@@ -12,7 +13,7 @@ export const Results = () => {
           <p className="text-Verylightgrayishcyan">Tip Amount</p>
           <p className="text-Darkgrayishcyan">/ person</p>
         </div>
-        <p className="text-xl text-Strongcyan">tipAmoun</p>
+        <p className="text-xl text-Strongcyan">{setTipAmount()}</p>
       </section>
       <section className="flex justify-between">
         <div className="flex flex-col">

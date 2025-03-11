@@ -1,14 +1,36 @@
-import { useState } from "react"
+import { useContext } from "react"
 import iconDollar from '../../images/icon-dollar.svg'
 import iconPerson from '../../images/icon-person.svg'
+import { ButtonTips } from "./ButtonTips"
+import { MainContext } from "../Context/MainContext"
 
-export const BillTotal = () => {
-  const [total, setTotal] = useState(2222)
-  const [persons, setPersons] = useState(3333)
+export const BillTotal = () => {  
+const {total, setTotal, persons, setPersons, tipPorcentage} = useContext(MainContext)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('handlesubmit')
+    totalWithTip()
   }
+  
+
+
+  const totalWithTip = () => {
+    const bill = parseFloat(total)
+    if(isNaN(bill) || bill <= 0) return "Insert a valid number"
+    const tip = bill * tipPorcentage / 100
+    const finalTotal = bill + tip
+    return finalTotal
+  }
+  
+  const totalPerPerson = () => {
+    const total = totalWithTip()
+    const perPerson = total / persons
+    console.log(` el total es: ${perPerson}`)
+    return perPerson
+  }
+  totalPerPerson()
+
 
   return (
     <div className="w-80 h-96 flex justify-center mb-4">
@@ -23,28 +45,12 @@ export const BillTotal = () => {
             type="number"
             id="total"
             value={total}
-            onChange={(e) => setTotal(e.target.value)}
+            onChange={(e) => setTotal(parseFloat(e.target.value))}
             className="w-80 h-10 rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold" />
         </div>
         <label htmlFor="tip" className="mt-8 mb-3 text-Darkgrayishcyan">Select Tip %</label>
-        <section className="grid grid-cols-2 gap-2 place-items-center">
-          <button 
-            className="w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan">5%</button>
-          <button 
-            className="w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan">10%</button>
-          <button 
-            className="w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan">15%</button>
-          <button 
-            className="w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan">25%</button>
-          <button 
-            className="w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan">50%</button>
-          <button 
-            className="w-40 h-10 bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg">Custom</button>
+        <section>
+          <ButtonTips/>
         </section>
         <label htmlFor="numberOfPeople" className="mt-8 mb-3 text-Darkgrayishcyan lg:mt-4">Number of People</label>
         <div className="relative">
@@ -56,7 +62,7 @@ export const BillTotal = () => {
             type="text"
             id="numberOfPeople"
             value={persons}
-            onChange={(e) => setPersons(e.target.value)}
+            onChange={(e) => setPersons(parseFloat(e.target.value))}
             className="w-80 h-10 rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold" />
         </div>
       </form>
