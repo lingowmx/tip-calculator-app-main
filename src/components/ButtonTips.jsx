@@ -2,9 +2,17 @@ import React, { useContext } from 'react'
 import { MainContext } from '../Context/MainContext'
 
 export const ButtonTips = () => {
-const {tipPorcentage, setTipPorcentage} = useContext(MainContext)
+  const {
+    tipPorcentage,
+    setTipPorcentage,
+    customTip,
+    setCustomTip } = useContext(MainContext)
 
-
+const handleCustomTipChange = (e) => {
+  const value = e.target.value
+  setCustomTip(value)
+  setTipPorcentage(0)
+}
 
   return (
     <div className='grid grid-cols-2 gap-2 place-items-center'>
@@ -17,16 +25,21 @@ const {tipPorcentage, setTipPorcentage} = useContext(MainContext)
               ${tipPorcentage === value
                 ? 'bg-Strongcyan text-Verydarkcyan'
                 : 'bg-Verydarkcyan text-white hover:bg-Strongcyan hover:text-Verydarkcyan'}`}
-            onClick={() => { setTipPorcentage(value) }}
+            onClick={() => {
+              setTipPorcentage(value)
+              setCustomTip('') }}
           >
             {value}%
           </button>
         )
       })}
-      <button
-        className='w-40 h-10 bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg'>
-        Custom
-      </button>
+      <input
+        type="text"
+        id='custom-tip'
+        placeholder='Custom'
+        className='w-40 h-10 bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg'
+        value={customTip}
+        onChange={handleCustomTipChange} />
     </div>
   )
 }

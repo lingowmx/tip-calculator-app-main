@@ -8,29 +8,35 @@ export const MainProvider = ({ children }) => {
   // const [totalPerPerson, setTotalPerPerson] = useState(0) // total per persons
   const [persons, setPersons] = useState(0)
   const [tipPorcentage, setTipPorcentage] = useState(0) //Tip porcentage
+  const [customTip, setCustomTip] = useState('') //estado del input custom tip
 
   //Uso de callback para memorizar la funcion
   const totalWithTip = useCallback(() => {
     const bill = total
-    if(isNaN(bill) || bill <= 0) return { tip: 0, finalTotal: 0 };
-    const tip = bill * tipPorcentage / 100
+    if (isNaN(bill) || bill <= 0) return { tip: 0, finalTotal: 0 };
+
+    const customTipValue = parseFloat(customTip)
+    const tipPercentageToUse = !isNaN(customTipValue) && customTipValue > 0 ? customTipValue : tipPorcentage
+
+    const tip = bill * tipPercentageToUse / 100
     const finalTotal = bill + tip
+
     console.log(`${finalTotal}`)
-    return {tip, finalTotal}
-  },[total, tipPorcentage])
+    return { tip, finalTotal }
+  }, [total, tipPorcentage, customTip])
 
   //Memoriza la propina por persona para evitar re-calculos innecesarios
   const tipPerPerson = useMemo(() => {
-    const {tip} = totalWithTip()
+    const { tip } = totalWithTip()
     return persons > 0 ? tip / persons : 0
-  },[totalWithTip, persons])
+  }, [totalWithTip, persons])
 
   //Memoriza el total por persona
   const totalPerPerson = useMemo(() => {
-    const {finalTotal} = totalWithTip()
+    const { finalTotal } = totalWithTip()
     const pricePerPerson = finalTotal / persons
     return persons > 0 ? pricePerPerson : finalTotal
-  },[totalWithTip, persons])
+  }, [totalWithTip, persons])
 
   //Como el valor de $tip por personas varia con respecto a el total, persons y tipPorcentage
   // usar un useEffect es mejor
@@ -52,7 +58,9 @@ export const MainProvider = ({ children }) => {
       totalPerPerson,
       tipPorcentage,
       setTipPorcentage,
-      tipPerPerson
+      tipPerPerson,
+      customTip,
+      setCustomTip
     }}>
       {children}
     </MainContext.Provider>
