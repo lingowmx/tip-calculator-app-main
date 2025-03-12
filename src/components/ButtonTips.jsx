@@ -36,8 +36,9 @@ const handleCustomTipChange = (e) => {
       <input
         type="text"
         id='custom-tip'
-        placeholder='Custom'
-        className='w-40 h-10 bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg'
+        placeholder='Custom %'
+        className='w-40 h-10 cursor-pointer outline-none text-center bg-Verylightgrayishcyan text-Darkgrayishcyan font-bold text-xl rounded-lg 
+          focus:ring-2 focus:ring-Strongcyan'
         value={customTip}
         onChange={handleCustomTipChange} />
     </div>

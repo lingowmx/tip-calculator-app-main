@@ -26,7 +26,8 @@ const {total, setTotal, persons, setPersons} = useContext(MainContext)
             id="total"
             value={total}
             onChange={(e) => setTotal(parseFloat(e.target.value))}
-            className="w-80 h-10 rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold" />
+            className="w-80 h-10 outline-none rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold
+            focus:ring-2 focus:ring-Strongcyan cursor-pointer" />
         </div>
         <label htmlFor="tip" className="mt-8 mb-3 text-Darkgrayishcyan">Select Tip %</label>
         <section>
@@ -43,7 +44,8 @@ const {total, setTotal, persons, setPersons} = useContext(MainContext)
             id="numberOfPeople"
             value={persons}
             onChange={(e) => setPersons(e.target.value)}
-            className="w-80 h-10 rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold" />
+            className="w-80 h-10 outline-none rounded-lg text-end pr-4 bg-Verylightgrayishcyan text-Verydarkcyan text-xl font-bold
+            focus:ring-2 focus:ring-Strongcyan cursor-pointer" />
         </div>
       </form>
     </div>
