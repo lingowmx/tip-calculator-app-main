@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { MainContext } from '../Context/MainContext'
 
 export const ButtonTips = () => {
-const {setTipPorcentage} = useContext(MainContext)
+const {tipPorcentage, setTipPorcentage} = useContext(MainContext)
 
 
 
@@ -13,8 +13,10 @@ const {setTipPorcentage} = useContext(MainContext)
           <button
             key={value}
             type='button'
-            className='w-40 h-10 bg-Verydarkcyan text-white text-xl rounded-lg cursor-pointer
-             hover:bg-Strongcyan hover:text-Verydarkcyan'
+            className={`w-40 h-10 text-white text-xl rounded-lg cursor-pointer transition-all duration-200
+              ${tipPorcentage === value
+                ? 'bg-Strongcyan text-Verydarkcyan'
+                : 'bg-Verydarkcyan text-white hover:bg-Strongcyan hover:text-Verydarkcyan'}`}
             onClick={() => { setTipPorcentage(value) }}
           >
             {value}%
