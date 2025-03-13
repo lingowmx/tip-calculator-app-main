@@ -7,7 +7,8 @@ const {
   totalPerPerson,
   setTotal,
   setPersons,
-  setTipPorcentage} = useContext(MainContext)
+  setTipPorcentage,
+  setCustomTip} = useContext(MainContext)
 
 
   return (
@@ -30,7 +31,7 @@ const {
       <button 
         className="w-[272px] h-10 text-xl bg-Strongcyan text-Verydarkcyan cursor-pointer rounded-md
         hover:bg-Lightgrayishcyan lg:mt-28"
-        onClick={() => (setTotal(''), setPersons(''), setTipPorcentage(0))}>RESET</button>
+        onClick={() => (setTotal('0'), setPersons('0'), setTipPorcentage(0), setCustomTip(''))}>RESET</button>
     </div>
   )
 }

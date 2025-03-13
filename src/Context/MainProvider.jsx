@@ -1,12 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { MainContext } from './MainContext'
 
-
 export const MainProvider = ({ children }) => {
   const [total, setTotal] = useState(0) // Total of the bill 
-  // const [tipAmount, setTipAmount] = useState(0) //Tip total amount
-  // const [totalPerPerson, setTotalPerPerson] = useState(0) // total per persons
-  const [persons, setPersons] = useState(0)
+  const [persons, setPersons] = useState(0) // Total of persons
   const [tipPorcentage, setTipPorcentage] = useState(0) //Tip porcentage
   const [customTip, setCustomTip] = useState('') //estado del input custom tip
 
@@ -37,17 +34,6 @@ export const MainProvider = ({ children }) => {
     const pricePerPerson = finalTotal / persons
     return persons > 0 ? pricePerPerson : finalTotal
   }, [totalWithTip, persons])
-
-  //Como el valor de $tip por personas varia con respecto a el total, persons y tipPorcentage
-  // usar un useEffect es mejor
-
-  // useEffect(() => {
-  //   setTipAmount(tipPerPerson())
-  // },[total, tipPorcentage, persons])
-
-  // useEffect(() => {
-  //   setTotalPerPerson(totalPerPersonFunction())
-  // },[total, persons, tipAmount])
 
   return (
     <MainContext.Provider value={{
